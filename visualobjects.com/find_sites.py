@@ -19,8 +19,8 @@ page = 1
 # https://clutch.co/your-project/requirements?source=visualobjects.com&utm_source=visualobjects&utm_medium=directory
 page_size = 16 + 1
 while 1:
-    r = session.get(f"{BASE_URL}/{CATEGORY}", dict(page=page))
-    s = BeautifulSoup(r.text)
+    r = session.get(f"{BASE_URL}/{CATEGORY}", params=dict(page=page))
+    s = BeautifulSoup(r.text, "lxml")
     buttons = s.find_all("div", class_="details-website-button")
     for btn in buttons:
         url = btn.find("a")["href"]
